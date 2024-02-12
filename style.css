@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+.box div {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 25px;
+}
+
+.shaded {
+    background-color: black;
+}
+
+.hoverOn {
+    background-color: grey;
+}
+
+.hoverOff {
+    background-color: white;
+}
+
+
+button {
+    width: 200px;
+    height: 40px;
+}
