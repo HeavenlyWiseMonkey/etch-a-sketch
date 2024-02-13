@@ -1,6 +1,19 @@
-function shadeIn(square) {
-    square.setAttribute('class', 'shaded')
+function black(square) {
+    square.setAttribute('class', 'black');
 }
+
+function get_color(square) {
+    let color = Math.floor(Math.random()*16777215).toString(16);
+    square.style.backgroundColor = `#${color}`;
+}
+
+// function increment_color(square) {
+//     let currentColor = square.getAttribute('backgroundColor');
+//     if (currentColor === null) {
+//         currentColor = 'FFFFFF'
+//     }
+    
+// }
 
 // function checkChildren(parent) {
 //     children = parent.childNodes;
@@ -20,15 +33,23 @@ function boxCreation(number) {
             const div = document.createElement('div');
             div.setAttribute('style', 'user-select: none;');
             div.addEventListener('mousedown', () => {
-                shadeIn(div);
-            })
+                if (randomColor) {
+                    get_color(div);
+                }
+                else if (shading) {
+                    increment_color(div);
+                }
+                else {
+                    black(div);
+                }
+                });
             div.addEventListener('mouseover', () => {
-                if (div.getAttribute('class') !== 'shaded') {
+                if (div.getAttribute('class') !== 'black') {
                     div.setAttribute('class', 'hoverOn');
                 }
             })
             div.addEventListener('mouseleave', () => {
-                if (div.getAttribute('class') !== 'shaded') {
+                if (div.getAttribute('class') !== 'black') {
                     div.setAttribute('class', 'hoverOff');
                 }
             })
@@ -52,7 +73,27 @@ function boxCreation(number) {
     // })
 }
 
+let randomColor = false;
+// let shading = false;
 const button = document.querySelector('button');
+const normal = document.querySelector('.normal');
+const rainbow = document.querySelector('.rainbow');
+// const chromatic = document.querySelector('.chromatic')
+
+normal.addEventListener('click', () => {
+    randomColor = false;
+    shading = false;
+});
+
+rainbow.addEventListener('click', () => {
+    randomColor = true;
+});
+
+// chromatic.addEventListener('click', () => {
+//     shading = true;
+// });
+
+
 button.addEventListener('click', () => {
     let number = 101;
     while (number > 100) {
@@ -60,3 +101,4 @@ button.addEventListener('click', () => {
     }
     boxCreation(number);
 })
+
