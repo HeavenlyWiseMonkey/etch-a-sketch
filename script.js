@@ -7,6 +7,15 @@ function get_color(square) {
     square.style.backgroundColor = `#${color}`;
 }
 
+function option(randomColor, div) {
+    if (randomColor) {
+        get_color(div);
+    }
+    else {
+        black(div);
+    }
+}
+
 // function increment_color(square) {
 //     let currentColor = square.getAttribute('backgroundColor');
 //     if (currentColor === null) {
@@ -24,6 +33,7 @@ function get_color(square) {
 
 function boxCreation(number) {
     const box = document.querySelector('.box');
+    let holding = false;
     while (box.firstChild) {
         box.firstChild.remove();
     }
@@ -33,16 +43,8 @@ function boxCreation(number) {
             const div = document.createElement('div');
             div.setAttribute('style', 'user-select: none;');
             div.addEventListener('mousedown', () => {
-                if (randomColor) {
-                    get_color(div);
-                }
-                else if (shading) {
-                    increment_color(div);
-                }
-                else {
-                    black(div);
-                }
-                });
+                option(randomColor, div);
+            });
             div.addEventListener('mouseover', () => {
                 if (div.getAttribute('class') !== 'black') {
                     div.setAttribute('class', 'hoverOn');
@@ -53,10 +55,22 @@ function boxCreation(number) {
                     div.setAttribute('class', 'hoverOff');
                 }
             })
+            div.addEventListener('mouseenter', () => {
+                if (holding) {
+                    option(randomColor, div);
+                }
+            });
             column.appendChild(div);
         }
         box.appendChild(column);
     }
+
+    box.addEventListener('mousedown', () => {
+        holding = true;
+    });
+    box.addEventListener('mouseup', () => {
+        holding = false;
+    })
     // box.childNodes.forEach((element) => {
     //     console.log(element);
     // })
