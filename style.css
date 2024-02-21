@@ -13,8 +13,8 @@
 
 .box {
     display: flex;
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
     border: 1px solid black;
 }
 
