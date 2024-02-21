@@ -1,7 +1,13 @@
-body {
+.all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.structure {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -18,10 +24,6 @@ body {
     flex: 1 1 25px;
 }
 
-.black {
-    background-color: black;
-}
-
 .hoverOn {
     background-color: grey;
 }
@@ -34,4 +36,17 @@ body {
 button {
     width: 200px;
     height: 40px;
+    cursor: pointer;
+}
+
+input {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline;
+}
+
+input::-webkit-color-swatch {
+    border-radius: 50%;
 }

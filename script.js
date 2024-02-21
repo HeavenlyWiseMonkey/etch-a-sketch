@@ -1,15 +1,22 @@
 function black(square) {
-    square.setAttribute('class', 'black');
+    square.style.backgroundColor = colorPicker.value;
 }
 
-function get_color(square) {
+function getRandomColor(square) {
     let color = Math.floor(Math.random()*16777215).toString(16);
     square.style.backgroundColor = `#${color}`;
 }
 
+function white(square) {
+    square.style.backgroundColor = 'rgb(255,255,255)';
+}
+
 function option(randomColor, div) {
     if (randomColor) {
-        get_color(div);
+        getRandomColor(div);
+    }
+    else if (eraser) {
+        white(div);
     }
     else {
         black(div);
@@ -46,12 +53,12 @@ function boxCreation(number) {
                 option(randomColor, div);
             });
             div.addEventListener('mouseover', () => {
-                if (div.getAttribute('class') !== 'black') {
+                if (div.getAttribute('backgroundColor') !== 'black') {
                     div.setAttribute('class', 'hoverOn');
                 }
             })
             div.addEventListener('mouseleave', () => {
-                if (div.getAttribute('class') !== 'black') {
+                if (div.getAttribute('backgroundColor') !== 'black') {
                     div.setAttribute('class', 'hoverOff');
                 }
             })
@@ -88,19 +95,29 @@ function boxCreation(number) {
 }
 
 let randomColor = false;
+let eraser = false;
 // let shading = false;
 const button = document.querySelector('button');
 const normal = document.querySelector('.normal');
 const rainbow = document.querySelector('.rainbow');
+const erase = document.querySelector('.erase');
+const colorPicker = document.querySelector('input');
 // const chromatic = document.querySelector('.chromatic')
 
 normal.addEventListener('click', () => {
     randomColor = false;
-    shading = false;
+    // shading = false;
+    eraser = false;
 });
 
 rainbow.addEventListener('click', () => {
     randomColor = true;
+    eraser = false;
+});
+
+erase.addEventListener('click', () => {
+    randomColor = false;
+    eraser = true;
 });
 
 // chromatic.addEventListener('click', () => {
